@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Housing App</Navbar.Brand>
+        <Navbar.Brand href="/housing-app">Housing App</Navbar.Brand>
         &emsp;
         <Nav className="me-auto">
           <Nav.Link href="#home" active>
