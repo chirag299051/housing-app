@@ -1,13 +1,117 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+  background-color: black;
+  border-radius: 10px;
+}
+
+.main {
+  background-color: rgb(224, 242, 255);
+  min-height: 100vh;
+  padding-top: 50px;
+}
+
+.filters {
+  background-color: rgb(126, 144, 160);
+  margin: 20px auto;
+  padding: 50px 10px;
+  width: 83vw;
+  height: 138px;
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 10px;
+}
+
+.filter {
+  width: 21%;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  width: 300px;
+  border-radius: 10px;
+  margin: 50px;
+  background-color: rgb(126, 144, 160);
+  color: azure;
+}
+
+.item .image {
+  width: 300px;
+  height: 200px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.item .details {
+  padding: 20px;
+  position: relative;
+}
+
+.details > h3 {
+  font-weight: 700;
+}
+
+.item .details h4 {
+  display: inline-block;
+  color: rgb(88, 0, 202);
+  font-weight: 700;
+}
+
+.favorite {
+  position: absolute;
+  top: 15px;
+  right: 40px;
+  border: 1px solid azure;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.extra {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: center;
+  color: rgb(127, 140, 153);
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #000;
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer a:hover {
+  color: inherit;
+}
+
+.footer a span#c {
+  color: rgb(115, 124, 133);
+  transition: all 0.2s ease-in-out;
+}
+
+.footer a:hover span#c {
+  color: rgb(155, 2, 2);
 }
