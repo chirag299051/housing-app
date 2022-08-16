@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/housing-app/static/css/main.c2a15410.css",
-    "main.js": "/housing-app/static/js/main.c03b16d6.js",
+    "main.js": "/housing-app/static/js/main.55eacb3f.js",
     "static/js/787.43cc62a1.chunk.js": "/housing-app/static/js/787.43cc62a1.chunk.js",
     "static/media/2.jpg": "/housing-app/static/media/2.947b541f50d09a83411c.jpg",
     "static/media/4.jpg": "/housing-app/static/media/4.f680ebdb98f6c4698272.jpg",
@@ -21,11 +21,11 @@
     "static/media/logo.svg": "/housing-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/housing-app/index.html",
     "main.c2a15410.css.map": "/housing-app/static/css/main.c2a15410.css.map",
-    "main.c03b16d6.js.map": "/housing-app/static/js/main.c03b16d6.js.map",
+    "main.55eacb3f.js.map": "/housing-app/static/js/main.55eacb3f.js.map",
     "787.43cc62a1.chunk.js.map": "/housing-app/static/js/787.43cc62a1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c2a15410.css",
-    "static/js/main.c03b16d6.js"
+    "static/js/main.55eacb3f.js"
   ]
 }
