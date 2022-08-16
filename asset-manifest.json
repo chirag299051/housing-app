@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/housing-app/static/css/main.c2a15410.css",
+    "main.js": "/housing-app/static/js/main.c03b16d6.js",
+    "static/js/787.43cc62a1.chunk.js": "/housing-app/static/js/787.43cc62a1.chunk.js",
+    "static/media/2.jpg": "/housing-app/static/media/2.947b541f50d09a83411c.jpg",
+    "static/media/4.jpg": "/housing-app/static/media/4.f680ebdb98f6c4698272.jpg",
+    "static/media/5.jpg": "/housing-app/static/media/5.7aae6419ffe10018c8f9.jpg",
+    "static/media/1.jpg": "/housing-app/static/media/1.157334b1b892b78a33a1.jpg",
+    "static/media/6.jpg": "/housing-app/static/media/6.f71a8df902cc07e30039.jpg",
+    "static/media/3.jpg": "/housing-app/static/media/3.c960e132738b00f67a73.jpg",
+    "static/media/8.jpg": "/housing-app/static/media/8.08675fed98296151edec.jpg",
+    "static/media/13.jpg": "/housing-app/static/media/13.fa62fdc7337147fdd166.jpg",
+    "static/media/7.jpg": "/housing-app/static/media/7.87851127be25e8e964e4.jpg",
+    "static/media/12.jpg": "/housing-app/static/media/12.c5f1a942faaff63446d8.jpg",
+    "static/media/15.jpg": "/housing-app/static/media/15.de9cab27b7c9dafc7b1e.jpg",
+    "static/media/9.jpg": "/housing-app/static/media/9.daef97e74f9db8e22fcb.jpg",
+    "static/media/14.jpg": "/housing-app/static/media/14.0834bbb69f1f328dcbbf.jpg",
+    "static/media/10.jpg": "/housing-app/static/media/10.c55d9c5f3f2eee096244.jpg",
+    "static/media/11.jpg": "/housing-app/static/media/11.b3172e9e2ccac4be38bb.jpg",
+    "static/media/logo.svg": "/housing-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/housing-app/index.html",
+    "main.c2a15410.css.map": "/housing-app/static/css/main.c2a15410.css.map",
+    "main.c03b16d6.js.map": "/housing-app/static/js/main.c03b16d6.js.map",
+    "787.43cc62a1.chunk.js.map": "/housing-app/static/js/787.43cc62a1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c2a15410.css",
+    "static/js/main.c03b16d6.js"
+  ]
+}
