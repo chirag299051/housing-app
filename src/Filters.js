@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Filter from "./Filter";
 import Button from "react-bootstrap/Button";
 import { cities, moveIn, type, price } from "./data";
@@ -8,8 +8,6 @@ const Filters = ({ data, setFilteredList }) => {
   const [filter_by_moveIn, setFilter_by_moveIn] = useState([]);
   const [filter_by_price, setFilter_by_price] = useState([]);
   const [filter_by_type, setFilter_by_type] = useState([]);
-
-  for (let i = 0; i < data.length; i++) {}
 
   const cityFilter = (data) => {
     return filter_by_cities.length === 0
@@ -31,7 +29,6 @@ const Filters = ({ data, setFilteredList }) => {
         )
       : data.filter((x) => {
           for (let y of filter_by_price) {
-            console.log("Y :", y);
             if (x.price >= y[0] && x.price <= y[1]) return true;
           }
           return false;
@@ -44,12 +41,6 @@ const Filters = ({ data, setFilteredList }) => {
   };
 
   const handleSearch = () => {
-    console.log(
-      filter_by_cities,
-      filter_by_moveIn,
-      filter_by_price,
-      filter_by_type
-    );
     const citiesFiltered = cityFilter(data);
     const locationFiltered = locationFilter(citiesFiltered);
     const priceFiltered = priceFilter(locationFiltered);

@@ -46,11 +46,8 @@ const Filter = ({
   };
 
   const handleChange = (option) => {
-    console.log("option :", option);
     setSelected(option);
   };
-
-  console.log("Selected :", selected);
 
   return (
     <span
