@@ -35,7 +35,7 @@ const AddEdit = () => {
     if (name === "img" && e.target.files.length !== 0) {
       setInputValue({
         ...inputValue,
-        file: URL.createObjectURL(e.target.files[0]),
+        [name]: URL.createObjectURL(e.target.files[0]),
       });
     } else {
       setInputValue({
