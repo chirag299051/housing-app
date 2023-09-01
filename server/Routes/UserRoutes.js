@@ -4,7 +4,7 @@ const {
   editListing,
 } = require("../Controllers/UserController");
 const router = require("express").Router();
-
+const path = require("path");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, callback) => {
-  let pattern = /jpg|png|svg/;
+  let pattern = /jpg|png|svg|jpeg/;
   if (pattern.test(path.extname(file.originalname))) {
     callback(null, true);
   } else {

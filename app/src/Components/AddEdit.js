@@ -32,11 +32,10 @@ const AddEdit = () => {
   }, [id, listings]);
 
   const handleChange = (e, name) => {
-    console.log(e);
     if (name === "img" && e.target.files.length !== 0) {
       setInputValue({
         ...inputValue,
-        [name]: URL.createObjectURL(e.target.files[0]),
+        file: URL.createObjectURL(e.target.files[0]),
       });
     } else {
       setInputValue({
@@ -48,6 +47,7 @@ const AddEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     id && dispatch(editListing(inputValue));
     id || dispatch(addListing(inputValue));
     setInputValue({

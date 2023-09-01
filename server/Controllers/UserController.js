@@ -14,7 +14,7 @@ module.exports.addListing = async (req, res, next) => {
   try {
     const data = req.file;
     console.log("data :", data);
-    const listing = await Listing.create(req.body);
+    const listing = await Listing.create({ ...req.body, img: data.path });
 
     res.status(200).json({ message: "data added successfully", listing });
     next();
