@@ -165,8 +165,8 @@ const AddEdit = () => {
                 <ToggleButton
                   variant="dark"
                   name="bed"
-                  key={val}
-                  id={val}
+                  key={val * 2}
+                  id={val * 2}
                   className="btn-toggle"
                   value={val}
                 >
@@ -187,8 +187,8 @@ const AddEdit = () => {
                 <ToggleButton
                   variant="dark"
                   name="bath"
-                  key={val}
-                  id={val}
+                  key={val * 10}
+                  id={val * 10}
                   className="btn-toggle"
                   value={val}
                 >

@@ -164,6 +164,8 @@ code {
 }
 
 .item .image {
+  max-width: 300px;
+  max-height: 200px;
   min-width: 300px;
   min-height: 200px;
   border-top-left-radius: 10px;

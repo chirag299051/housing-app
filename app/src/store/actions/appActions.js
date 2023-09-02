@@ -14,6 +14,7 @@ export const addListing = (listing) => async (dispatch) => {
 };
 export const editListing = (inputValue) => async (dispatch) => {
   const id = inputValue._id;
+  console.log("iv: ", id);
   await axios.put(`${serverUrl}/edit/${id}`, inputValue);
   dispatch({ type: "EDIT", id });
 };
