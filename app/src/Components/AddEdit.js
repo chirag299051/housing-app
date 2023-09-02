@@ -17,6 +17,7 @@ const AddEdit = () => {
     address: "",
     bed: 0,
     bath: 0,
+    img: "",
   });
   const dispatch = useDispatch();
   const listings = useSelector((state) => state.app.listings);
@@ -35,7 +36,7 @@ const AddEdit = () => {
     if (name === "img" && e.target.files.length !== 0) {
       setInputValue({
         ...inputValue,
-        [name]: URL.createObjectURL(e.target.files[0]),
+        [name]: e.target.files[0],
       });
     } else {
       setInputValue({
@@ -47,9 +48,18 @@ const AddEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
 
-    id && dispatch(editListing(inputValue));
-    id || dispatch(addListing(inputValue));
+    formData.append("type", inputValue.type);
+    formData.append("name", inputValue.name);
+    formData.append("price", inputValue.price);
+    formData.append("address", inputValue.address);
+    formData.append("bed", inputValue.bed);
+    formData.append("bath", inputValue.bath);
+    formData.append("img", inputValue.img);
+
+    id && dispatch(editListing(formData));
+    id || dispatch(addListing(formData));
     setInputValue({
       type: "",
       name: "",
@@ -57,8 +67,11 @@ const AddEdit = () => {
       address: "",
       bed: 0,
       bath: 0,
+      img: "",
     });
-    navigate("/");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
 
   const cities = ["New York", "Toronto", "Vancouver", "New Delhi"];
@@ -209,7 +222,7 @@ const AddEdit = () => {
             <Form.Group controlId="formFile" className="mb-3 row-2 img">
               <Form.Label>Add Image</Form.Label>
               <Form.Control
-                name="file"
+                name="img"
                 type="file"
                 onChange={(e) => handleChange(e, "img")}
               />

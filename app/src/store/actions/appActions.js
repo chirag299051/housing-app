@@ -9,7 +9,7 @@ export const fetchData = () => async (dispatch) => {
 
 export const addListing = (listing) => async (dispatch) => {
   console.log("Listing: ", listing);
-  await axios.post(serverUrl + "/add/", listing);
+  await axios.post(serverUrl + "/add", listing);
   dispatch({ type: "ADD", listing });
 };
 export const editListing = (inputValue) => async (dispatch) => {
