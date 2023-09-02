@@ -17,7 +17,7 @@ const AddEdit = () => {
     address: "",
     bed: 0,
     bath: 0,
-    img: "",
+    file: "",
   });
   const dispatch = useDispatch();
   const listings = useSelector((state) => state.app.listings);
@@ -33,10 +33,11 @@ const AddEdit = () => {
   }, [id, listings]);
 
   const handleChange = (e, name) => {
-    if (name === "img" && e.target.files.length !== 0) {
+    if (name === "file" && e.target.files.length !== 0) {
       setInputValue({
         ...inputValue,
-        [name]: e.target.files[0],
+        file: e.target.files[0],
+        // [name]: URL.createObjectURL(e.target.files[0]),
       });
     } else {
       setInputValue({
@@ -56,7 +57,7 @@ const AddEdit = () => {
     formData.append("address", inputValue.address);
     formData.append("bed", inputValue.bed);
     formData.append("bath", inputValue.bath);
-    formData.append("img", inputValue.img);
+    formData.append("file", inputValue.file);
 
     id && dispatch(editListing(formData));
     id || dispatch(addListing(formData));
@@ -67,7 +68,7 @@ const AddEdit = () => {
       address: "",
       bed: 0,
       bath: 0,
-      img: "",
+      file: "",
     });
     setTimeout(() => {
       navigate("/");
@@ -222,11 +223,11 @@ const AddEdit = () => {
             <Form.Group controlId="formFile" className="mb-3 row-2 img">
               <Form.Label>Add Image</Form.Label>
               <Form.Control
-                name="img"
+                name="file"
                 type="file"
-                onChange={(e) => handleChange(e, "img")}
+                onChange={(e) => handleChange(e, "file")}
               />
-              <img src={inputValue?.img} />
+              <img src={inputValue?.file} />
             </Form.Group>
           </div>
         </div>

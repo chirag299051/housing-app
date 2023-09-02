@@ -12,9 +12,9 @@ module.exports.fetchData = async (req, res, next) => {
 
 module.exports.addListing = async (req, res, next) => {
   try {
-    const data = req.file;
-    console.log("data :", data);
-    const listing = await Listing.create({ ...req.body, img: data.path });
+    console.log("data :", req.file);
+    const data = req.file.filename;
+    const listing = await Listing.create({ ...req.body, img: data });
 
     res.status(200).json({ message: "data added successfully", listing });
     next();
