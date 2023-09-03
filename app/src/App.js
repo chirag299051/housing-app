@@ -4,7 +4,7 @@ import Home from "./Components/Home";
 import Footer from "./Components/Footer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddEdit from "./Components/AddEdit";
-import Listing from "./Components/Listing";
+import ListingModal from "./Components/ListingModal";
 
 function App() {
   const router = createBrowserRouter([
@@ -12,10 +12,10 @@ function App() {
       path: "/",
       element: <Home />,
     },
-    {
-      path: "/listing/:id",
-      element: <Listing />,
-    },
+    // {
+    //   path: "/listingModal/:id",
+    //   element: <ListingModal />,
+    // },
     {
       path: "/add",
       element: <AddEdit />,

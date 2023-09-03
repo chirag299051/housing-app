@@ -9,12 +9,23 @@ export const fetchData = () => async (dispatch) => {
 
 export const addListing = (listing) => async (dispatch) => {
   console.log("Listing: ", listing);
-  await axios.post(serverUrl + "/add", listing);
-  dispatch({ type: "ADD", listing });
+  const recivedListing = await axios.post(serverUrl + "/add", listing, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  const updatedData = recivedListing.data.listing;
+
+  dispatch({ type: "ADD", updatedData });
 };
 export const editListing = (inputValue) => async (dispatch) => {
-  const id = inputValue._id;
-  console.log("iv: ", id);
-  await axios.put(`${serverUrl}/edit/${id}`, inputValue);
+  const id = inputValue.id;
+  console.log(inputValue);
+  await axios.put(`${serverUrl}/edit/${id}`, inputValue, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   dispatch({ type: "EDIT", id });
 };

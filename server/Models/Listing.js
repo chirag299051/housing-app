@@ -9,6 +9,7 @@ const Listing = new mongoose.Schema({
   bed: { type: Number },
   bath: { type: Number },
   type: { type: String },
+  postedBy: { type: String },
   img: { type: String },
 });
 

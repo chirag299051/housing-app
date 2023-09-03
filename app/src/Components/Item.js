@@ -4,11 +4,11 @@ import { FaBath } from "react-icons/fa";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
 
-const Item = ({ item }) => {
+const Item = ({ item, onClick }) => {
   const [favorite, setFavorite] = useState(false);
   const { id, name, city, price, moveIn, bed, bath, address, type, img } = item;
   return (
-    <article className="item">
+    <article className="item" onClick={onClick}>
       <img className="image" src={img} alt="image" />
       <div className="details">
         <h4>${price}</h4>

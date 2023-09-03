@@ -13,11 +13,13 @@ const AddEdit = () => {
   const [inputValue, setInputValue] = useState({
     type: "",
     name: "",
+    city: "",
     price: 0,
     address: "",
     bed: 0,
     bath: 0,
     file: "",
+    postedBy: "",
   });
   const dispatch = useDispatch();
   const listings = useSelector((state) => state.app.listings);
@@ -26,11 +28,13 @@ const AddEdit = () => {
 
   useEffect(() => {
     if (id) {
-      const listing = listings.filter((x) => x._id == id)[0];
+      const listing = listings.filter((x) => x._id === id)[0];
       console.log("listing :", listing);
       setInputValue(listing);
     }
   }, [id, listings]);
+
+  console.log(inputValue);
 
   const handleChange = (e, name) => {
     if (name === "file" && e.target.files.length !== 0) {
@@ -53,29 +57,46 @@ const AddEdit = () => {
 
     formData.append("type", inputValue.type);
     formData.append("name", inputValue.name);
+    formData.append("city", inputValue.city);
     formData.append("price", inputValue.price);
     formData.append("address", inputValue.address);
     formData.append("bed", inputValue.bed);
     formData.append("bath", inputValue.bath);
     formData.append("file", inputValue.file);
+    formData.append("postedBy", inputValue.postedBy);
+    id && formData.append("id", id);
 
-    id && dispatch(editListing(formData));
-    id || dispatch(addListing(formData));
+    // Create an object to store the data.
+    const formDataObject = {};
+
+    // Iterate through the FormData entries and populate the object.
+    for (const [key, value] of formData.entries()) {
+      formDataObject[key] = value;
+    }
+
+    if (id) {
+      dispatch(editListing(formDataObject));
+    } else {
+      dispatch(addListing(formDataObject));
+    }
+
     setInputValue({
       type: "",
       name: "",
       price: 0,
+      city: "",
       address: "",
       bed: 0,
       bath: 0,
       file: "",
+      postedBy: "",
     });
     setTimeout(() => {
       navigate("/");
     }, 1000);
   };
 
-  const cities = ["New York", "Toronto", "Vancouver", "New Delhi"];
+  const cities = ["New York", "Toronto", "Vancouver"];
   const type = ["House", "Apartment"];
 
   return (
@@ -141,7 +162,7 @@ const AddEdit = () => {
               {cities.map((val) => (
                 <ToggleButton
                   variant="dark"
-                  name="bed"
+                  name="city"
                   key={val}
                   id={val}
                   className="btn-toggle"
@@ -214,6 +235,7 @@ const AddEdit = () => {
             <Form.Group className="mb-3 row-2" controlId="formBasicEmail">
               <Form.Label>Posted by</Form.Label>
               <Form.Control
+                name="postedBy"
                 onChange={(e) => handleChange(e, "postedBy")}
                 type="text"
                 value={inputValue?.postedBy}

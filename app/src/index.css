@@ -12,6 +12,54 @@ code {
     monospace;
 }
 
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  position: fixed;
+  margin: auto;
+  width: 500px;
+  height: 90vh;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal.left .modal-body,
+.modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+/*Right*/
+.modal.right.fade .modal-dialog {
+  top: 5vh;
+  right: 0px;
+  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+  transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.show .modal-dialog {
+  right: 0;
+}
+/* ----- MODAL STYLE ----- */
+
+.modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.modal-header {
+  border-bottom-color: #eeeeee;
+  background-color: #fafafa;
+}
+
 .hidden {
   display: none;
 }
@@ -175,6 +223,7 @@ code {
 
 .item .details {
   min-height: 200px;
+  max-height: 200px;
   padding: 20px;
   position: relative;
 }
@@ -189,16 +238,20 @@ code {
   font-weight: 700;
 }
 
-.listing {
-  padding-top: 0;
+.listing-modal {
 }
 
-.listing-container {
-  max-width: 60vw;
-  min-height: 100vh;
-  background-color: aliceblue;
-  margin: auto;
+.modal-img {
+  min-width: 500px;
+  max-width: 500px;
+  min-height: 333.3px;
+  max-height: 333.3px;
+  overflow: hidden;
 }
+
+/* .modal-content {
+  padding: 20px;
+} */
 
 .favorite {
   position: absolute;

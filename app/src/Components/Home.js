@@ -3,13 +3,14 @@ import Filters from "./Filters";
 import Item from "./Item";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../store/actions/appActions";
-import { Link } from "react-router-dom";
+import ListingModal from "./ListingModal";
 
 const Home = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.app.listings);
-  console.log("data : ", data);
   const [filteredList, setFilteredList] = useState(data);
+  const [modal, setModal] = useState(false);
+  const [selected, setSelected] = useState({});
 
   useEffect(() => {
     dispatch(fetchData());
@@ -19,22 +20,28 @@ const Home = () => {
     setFilteredList(data);
   }, [data]);
 
+  console.log("filtered: ", filteredList);
+
+  const handleClick = (x) => {
+    setSelected(x);
+    setModal(true);
+  };
+
   return (
     <section className="home">
       <Filters data={filteredList} setFilteredList={setFilteredList} />
-
       <div className="items">
-        {filteredList.map((x) => (
-          <Link
-            className="link"
-            to={`/listing/${x._id}`}
-            key={x._id}
-            style={{ textDecoration: "none", display: "contents" }}
-          >
-            <Item item={x} />
-          </Link>
-        ))}
+        {filteredList.map((x) => {
+          return x?._id ? (
+            <Item item={x} key={x._id} onClick={() => handleClick(x)} />
+          ) : null;
+        })}
       </div>
+      <ListingModal
+        show={modal ? true : false}
+        onHide={() => setModal(false)}
+        item={selected}
+      />
     </section>
   );
 };

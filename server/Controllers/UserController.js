@@ -53,15 +53,46 @@ module.exports.addListing = async (req, res, next) => {
 
 module.exports.editListing = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const data = req.body;
-    console.log(req.params);
-    await Listing.findOneAndUpdate({ _id: id }, data);
+    const id = req.params.id;
+    let data = req.body;
+    console.log("id = " + req.params.id);
+    console.log(data);
 
-    res
-      .status(200)
-      .json({ message: "data updated successfully", listing: data });
-    next();
+    // If there is any image
+    // Then convert the image to 64
+    // else simply update the data.
+    if (req.file) {
+      // Reading File
+      fs.readFile(req.file.path, async (err, imageData) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send("Error reading the image file.");
+        }
+
+        // Convert the image data to base64
+        const base64Image = Buffer.from(imageData).toString("base64");
+
+        // Adding Mimetype to it.
+        const base64ImageWithMimeType = `data:${req.file.mimetype};base64,${base64Image}`;
+
+        data = { ...data, img: base64ImageWithMimeType };
+
+        const updatedListing = await Listing.findByIdAndUpdate(id, data, {
+          new: true,
+        });
+        res
+          .status(200)
+          .json({ message: "data updated successfully", updatedListing });
+      });
+    } else {
+      const updatedListing = await Listing.findByIdAndUpdate(id, data, {
+        new: true,
+      });
+
+      res
+        .status(200)
+        .json({ message: "data updated successfully", updatedListing });
+    }
   } catch (error) {
     console.log(error);
   }

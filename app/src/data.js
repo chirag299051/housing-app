@@ -18,7 +18,6 @@ export const cities = [
   { key: 1, label: "New York", value: "New York" },
   { key: 2, label: "Toronto", value: "Toronto" },
   { key: 3, label: "Vancouver", value: "Vancouver" },
-  { key: 4, label: "New Delhi", value: "New Delhi" },
 ];
 export const moveIn = [
   { key: 1, label: "August", value: "August" },

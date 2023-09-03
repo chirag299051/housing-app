@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 const AuthRoutes = require("./Routes/AuthRoutes");
 const UserRoutes = require("./Routes/UserRoutes");
+var bodyParser = require("body-parser");
 
 const MONGODB_URL = process.env.MONGODB_URL;
 const PORT = process.env.API_PORT;
@@ -19,8 +20,8 @@ mongoose
 
 app.use(cors());
 app.options("*", cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 app.use("/", AuthRoutes);
 app.use("/", UserRoutes);

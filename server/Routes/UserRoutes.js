@@ -32,6 +32,6 @@ let upload = multer({
 
 router.get("/", fetchData);
 router.post("/add", upload.single("file"), addListing);
-router.put("/edit/:id", editListing);
+router.put("/edit/:id", upload.single("file"), editListing);
 
 module.exports = router;
