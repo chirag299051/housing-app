@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
@@ -22,6 +23,9 @@ app.use(cors());
 app.options("*", cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+
+const buildPath = path.join(__dirname, "../app/build");
+app.use(express.static(buildPath));
 
 app.use("/", AuthRoutes);
 app.use("/", UserRoutes);

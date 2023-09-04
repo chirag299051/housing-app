@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -27,9 +27,16 @@ const ListingModal = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>{price}/month</h4>
-          <p>{bed} bed</p>
-          <p>{bath} bath</p>
+          <h4>
+            {price}
+            <span> /month</span>
+          </h4>
+          <p>
+            {bed} <span>bed</span>
+          </p>
+          <p>
+            {bath} <span>bath</span>
+          </p>
           <p>{type}</p>
         </Modal.Body>
         <Modal.Footer>

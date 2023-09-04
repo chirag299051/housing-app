@@ -4,6 +4,7 @@ import Item from "./Item";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../store/actions/appActions";
 import ListingModal from "./ListingModal";
+import Loading from "./Loading";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const Home = () => {
   const [filteredList, setFilteredList] = useState(data);
   const [modal, setModal] = useState(false);
   const [selected, setSelected] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -19,6 +21,10 @@ const Home = () => {
   useEffect(() => {
     setFilteredList(data);
   }, [data]);
+
+  useEffect(() => {
+    filteredList.length !== 0 && setLoading(false);
+  }, [filteredList]);
 
   console.log("filtered: ", filteredList);
 
@@ -31,11 +37,15 @@ const Home = () => {
     <section className="home">
       <Filters data={filteredList} setFilteredList={setFilteredList} />
       <div className="items">
-        {filteredList.map((x) => {
-          return x?._id ? (
-            <Item item={x} key={x._id} onClick={() => handleClick(x)} />
-          ) : null;
-        })}
+        {!loading ? (
+          filteredList.map((x) => {
+            return x?._id ? (
+              <Item item={x} key={x._id} onClick={() => handleClick(x)} />
+            ) : null;
+          })
+        ) : (
+          <Loading />
+        )}
       </div>
       <ListingModal
         show={modal ? true : false}

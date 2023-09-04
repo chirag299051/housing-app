@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import image from "../assets/house2.jpeg";
 
 const AddEdit = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const AddEdit = () => {
     address: "",
     bed: 0,
     bath: 0,
-    file: "",
+    file: image,
     postedBy: "",
   });
   const dispatch = useDispatch();
@@ -54,6 +55,9 @@ const AddEdit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
+    if (!inputValue.file) {
+      formData.append("file", image);
+    }
 
     formData.append("type", inputValue.type);
     formData.append("name", inputValue.name);

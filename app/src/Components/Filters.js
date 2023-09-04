@@ -43,8 +43,7 @@ const Filters = ({ data, setFilteredList }) => {
 
   const handleSearch = () => {
     const citiesFiltered = cityFilter(data);
-    const locationFiltered = locationFilter(citiesFiltered);
-    const priceFiltered = priceFilter(locationFiltered);
+    const priceFiltered = priceFilter(citiesFiltered);
     const typeFiltered = typeFilter(priceFiltered);
 
     setFilteredList(typeFiltered);
