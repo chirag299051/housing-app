@@ -14,7 +14,7 @@ code {
 
 .loading {
   width: 44px;
-  margin: 50px auto;
+  margin: 100px auto;
   aspect-ratio: 2;
   --_g: no-repeat
     radial-gradient(circle closest-side, rgb(126, 144, 160) 90%, #ffffff00);
