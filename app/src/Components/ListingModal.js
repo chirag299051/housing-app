@@ -4,7 +4,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const ListingModal = (props) => {
-  const { _id, name, city, price, address, bed, bath, type, img } = props.item;
+  const { _id, name, city, price, address, bed, bath, type, img, postedBy } =
+    props.item;
   console.log(props.item);
 
   return (
@@ -22,29 +23,42 @@ const ListingModal = (props) => {
       <div className="modal-content">
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {name}
-            <h6>{address}</h6>
+            <h5>{name}</h5>
+            <span>{address}</span>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <h4>
-            {price}
-            <span> /month</span>
-          </h4>
-          <p>
-            {bed} <span>bed</span>
-          </p>
-          <p>
-            {bath} <span>bath</span>
-          </p>
-          <p>{type}</p>
+        <Modal.Body className="modal-body">
+          <div>{city}</div>
+          <div>
+            <span>Posted by: </span>
+            {postedBy}
+          </div>
+          <div>
+            ${price}
+            <span>/mo</span>
+          </div>
+          <div>
+            <span>Type: </span>
+            {type}
+          </div>
+
+          <div>
+            {bed}
+            <span> Beds</span>
+          </div>
+          <div>
+            {bath}
+            <span> Baths</span>
+          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Link to={`/edit/${_id}`} className="btn btn-primary">
+        <div className="modal-buttons">
+          <Link to={`/edit/${_id}`} className="btn btn-dark">
             Edit listing
           </Link>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
+          <Button className="btn btn-red" onClick={props.onHide}>
+            Close
+          </Button>
+        </div>
       </div>
     </Modal>
   );

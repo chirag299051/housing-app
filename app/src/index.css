@@ -60,7 +60,7 @@ code {
 
 .modal.left .modal-body,
 .modal.right .modal-body {
-  padding: 15px 15px 80px;
+  padding: 70px;
 }
 
 /*Right*/
@@ -77,17 +77,49 @@ code {
 }
 /* ----- MODAL STYLE ----- */
 
+.modal-body {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px;
+  font-size: 24px;
+}
+
 .modal-content {
   border-radius: 0;
   border: none;
 }
 .modal-content span {
-  color: rgb(199, 199, 199);
+  color: rgb(81, 81, 81);
 }
 
 .modal-header {
   color: aliceblue;
   background-color: rgb(126, 144, 160);
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  bottom: 100px;
+}
+
+.modal-buttons .btn {
+  display: block;
+  width: 100%;
+  margin-top: 50px;
+  padding: 10px;
+}
+
+.btn.btn-red {
+  margin-top: 30px;
+  background-color: rgb(217, 0, 0);
+}
+.btn.btn-red:hover {
+  background-color: rgb(157, 0, 0);
 }
 
 .hidden {
