@@ -42,7 +42,6 @@ const AddEdit = () => {
       setInputValue({
         ...inputValue,
         file: e.target.files[0],
-        // [name]: URL.createObjectURL(e.target.files[0]),
       });
     } else {
       setInputValue({
@@ -70,10 +69,8 @@ const AddEdit = () => {
     formData.append("postedBy", inputValue.postedBy);
     id && formData.append("id", id);
 
-    // Create an object to store the data.
     const formDataObject = {};
 
-    // Iterate through the FormData entries and populate the object.
     for (const [key, value] of formData.entries()) {
       formDataObject[key] = value;
     }

@@ -272,6 +272,9 @@ code {
   background-color: rgb(126, 144, 160);
   color: azure;
 }
+.item:hover {
+  cursor: pointer;
+}
 
 .item .image {
   max-width: 300px;
@@ -311,9 +314,6 @@ code {
   overflow: hidden;
 }
 
-/* .modal-content {
-  padding: 20px;
-} */
 
 .favorite {
   position: absolute;

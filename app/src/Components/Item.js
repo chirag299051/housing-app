@@ -6,7 +6,7 @@ import { BsHeartFill } from "react-icons/bs";
 
 const Item = ({ item, onClick }) => {
   const [favorite, setFavorite] = useState(false);
-  const { id, name, city, price, moveIn, bed, bath, address, type, img } = item;
+  const { name, price, bed, bath, address, img } = item;
   return (
     <article className="item" onClick={onClick}>
       <img className="image" src={img} alt="image" />

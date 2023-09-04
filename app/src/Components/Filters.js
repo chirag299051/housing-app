@@ -15,11 +15,11 @@ const Filters = ({ data, setFilteredList }) => {
       ? data
       : data.filter((x) => filter_by_cities.includes(x.city));
   };
-  const locationFilter = (data) => {
-    return filter_by_moveIn.length === 0
-      ? data
-      : data.filter((x) => filter_by_moveIn.includes(x.moveIn));
-  };
+  // const locationFilter = (data) => {
+  //   return filter_by_moveIn.length === 0
+  //     ? data
+  //     : data.filter((x) => filter_by_moveIn.includes(x.moveIn));
+  // };
   const priceFilter = (data) => {
     return filter_by_price.length === 0
       ? data
