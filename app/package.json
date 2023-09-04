@@ -1,6 +1,6 @@
 {
   "name": "housing-app",
-  "homepage": "https://housing-app.onrender.com",
+  "homepage": "https://housing-app.onrender.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

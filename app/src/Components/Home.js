@@ -23,7 +23,7 @@ const Home = () => {
   }, [data]);
 
   useEffect(() => {
-    filteredList.length !== 0 && setLoading(false);
+    filteredList?.length !== 0 && setLoading(false);
   }, [filteredList]);
 
   console.log("filtered: ", filteredList);
@@ -38,7 +38,7 @@ const Home = () => {
       <Filters data={filteredList} setFilteredList={setFilteredList} />
       <div className="items">
         {!loading ? (
-          filteredList.map((x) => {
+          filteredList?.map((x) => {
             return x?._id ? (
               <Item item={x} key={x._id} onClick={() => handleClick(x)} />
             ) : null;
