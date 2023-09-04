@@ -24,8 +24,8 @@ app.options("*", cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
-// const buildPath = path.join(__dirname, "../app/build");
-// app.use(express.static(buildPath));
+const buildPath = path.join(__dirname, "../app/build");
+app.use(express.static(buildPath));
 
 app.use("/", AuthRoutes);
 app.use("/", UserRoutes);
