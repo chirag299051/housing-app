@@ -4,30 +4,11 @@ const {
   editListing,
 } = require("../Controllers/UserController");
 const router = require("express").Router();
-const path = require("path");
 const multer = require("multer");
-const { v4: uuidv4 } = require("uuid");
 
-const storage = multer.diskStorage({
-  destination: "./images/",
-  filename: function (req, file, cb) {
-    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
-  },
-});
-
-const fileFilter = (req, file, callback) => {
-  let pattern = /jpg|png|svg|jpeg/;
-  if (pattern.test(path.extname(file.originalname))) {
-    callback(null, true);
-  } else {
-    callback("Error: not a valid file");
-  }
-};
-
-let upload = multer({
+const storage = new multer.memoryStorage();
+const upload = multer({
   storage,
-  fileFilter,
-  limits: { fieldSize: 10 * 1024 * 1024 },
 });
 
 router.get("/", fetchData);

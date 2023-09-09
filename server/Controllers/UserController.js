@@ -1,10 +1,24 @@
-const fs = require("fs");
-const path = require("path");
 const Listing = require("../Models/Listing");
+const cloudinary = require("cloudinary").v2;
+const sample =
+  "https://res.cloudinary.com/dxfhu6m44/image/upload/v1694257010/houseSample.webp";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+async function handleUpload(file) {
+  const res = await cloudinary.uploader.upload(file, {
+    resource_type: "auto",
+  });
+  return res;
+}
 
 module.exports.fetchData = async (req, res, next) => {
   try {
     const data = await Listing.find();
+
     res.status(200).json({ message: "data fetched successfully", data });
     next();
   } catch (error) {
@@ -14,55 +28,32 @@ module.exports.fetchData = async (req, res, next) => {
 
 module.exports.addListing = async (req, res, next) => {
   try {
-    // First Check image is available or not in Payload.
-    if (!req.file) {
-      const filePath = path.join(__dirname, "../images/house2.jpeg");
-      fs.readFile(filePath, async (err, data) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send("Error reading the image file.");
-        }
-        console.log("DATA: ", data);
-        const base64Image = Buffer.from(data).toString("base64");
+    if (req.file) {
+      const b64 = Buffer.from(req.file.buffer).toString("base64");
+      let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+      const cldRes = await handleUpload(dataURI);
 
-        // Adding Mimetype to it.
-        const base64ImageWithMimeType = `data:image/jpeg;base64,${base64Image}`;
-
-        // Create a new listing document and store the base64-encoded image data
-        const listing = await Listing.create({
-          ...req.body,
-          img: base64ImageWithMimeType,
-        });
-        res.status(200).json({ message: "Data added successfully", listing });
+      const listing = await Listing.create({
+        ...req.body,
+        img: cldRes.secure_url,
       });
-      // return res.status(400).json({ message: "No file uploaded" });
+      res
+        .status(200)
+        .json({ message: "Data added successfully", listing, cldRes });
     } else {
-      fs.readFile(req.file.path, async (err, data) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send("Error reading the image file.");
-        }
-
-        // Convert the image data to base64
-        const base64Image = Buffer.from(data).toString("base64");
-
-        // Adding Mimetype to it.
-        const base64ImageWithMimeType = `data:${req.file.mimetype};base64,${base64Image}`;
-
-        // Create a new listing document and store the base64-encoded image data
-        const listing = await Listing.create({
-          ...req.body,
-          img: base64ImageWithMimeType,
-        });
-        res.status(200).json({ message: "Data added successfully", listing });
+      const listing = await Listing.create({
+        ...req.body,
+        img: sample,
       });
-      // Delete the temporary image file
-      // fs.unlink(req.file.path, (err) => {
-      //   if (err) console.error(err);
-      // });
+      res
+        .status(200)
+        .json({ message: "Data added successfully", listing, sample });
     }
   } catch (error) {
     console.log(error);
+    res.send({
+      message: error.message,
+    });
   }
 };
 
@@ -70,40 +61,26 @@ module.exports.editListing = async (req, res, next) => {
   try {
     const id = req.params.id;
     let data = req.body;
-    console.log("id = " + req.params.id);
-    console.log(data);
 
-    // If there is any image
-    // Then convert the image to 64
-    // else simply update the data.
     if (req.file) {
-      // Reading File
-      fs.readFile(req.file.path, async (err, imageData) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send("Error reading the image file.");
-        }
+      console.log("req.file ", req.file);
+      const b64 = Buffer.from(req.file.buffer).toString("base64");
+      let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+      const cldRes = await handleUpload(dataURI);
+      console.log("I:", cldRes);
 
-        // Convert the image data to base64
-        const base64Image = Buffer.from(imageData).toString("base64");
+      data = { ...data, img: cldRes.secure_url };
 
-        // Adding Mimetype to it.
-        const base64ImageWithMimeType = `data:${req.file.mimetype};base64,${base64Image}`;
-
-        data = { ...data, img: base64ImageWithMimeType };
-
-        const updatedListing = await Listing.findByIdAndUpdate(id, data, {
-          new: true,
-        });
-        res
-          .status(200)
-          .json({ message: "data updated successfully", updatedListing });
+      const updatedListing = await Listing.findByIdAndUpdate(id, data, {
+        new: true,
       });
+      res
+        .status(200)
+        .json({ message: "data updated successfully", updatedListing });
     } else {
       const updatedListing = await Listing.findByIdAndUpdate(id, data, {
         new: true,
       });
-
       res
         .status(200)
         .json({ message: "data updated successfully", updatedListing });
